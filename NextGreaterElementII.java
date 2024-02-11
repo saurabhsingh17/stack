@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Stack;
 
 public class NextGreaterElementII {
     static class BruteForce {
@@ -29,8 +30,28 @@ public class NextGreaterElementII {
             return result;
         }
     }
+
+    //o(n)-time and space
+    static class OptimisedApproachUsingStack {
+        static int[] nextGreaterElements(int[] nums) {
+            int n = nums.length;
+            Stack<Integer> stack = new Stack<>();
+            for (int i = n-1; i >= 0; i--) {
+                stack.push(nums[i]);
+            }
+
+            for (int i = n-1; i >= 0; i--) {
+                int num = nums[i];
+                while (!stack.empty() && stack.peek() <= nums[i]) stack.pop();
+                nums[i] = stack.isEmpty() ? -1 : stack.peek();
+                stack.push(num);
+            }
+            return nums;
+        }
+
+    }
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,3};
-        System.out.println(Arrays.toString(BruteForce.nextGreaterElements(arr)));
+        System.out.println(Arrays.toString(OptimisedApproachUsingStack.nextGreaterElements(arr)));
     }
 }
