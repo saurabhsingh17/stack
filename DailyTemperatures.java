@@ -23,7 +23,7 @@ public class DailyTemperatures {
                 stack.pop();
             }
             result[i] = stack.isEmpty() ? -1: stack.peek().getValue();
-            Map.Entry<Integer,Integer> entry = new AbstractMap.SimpleEntry<>(nums[i],i);
+            Map.Entry<Integer,Integer> entry = new HashMap.SimpleEntry<>(nums[i],i);
             stack.push(entry);
         }
         return result;
