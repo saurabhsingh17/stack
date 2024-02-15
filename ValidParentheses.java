@@ -9,20 +9,18 @@ public class ValidParentheses {
         hashMap.put(')', '(');
         hashMap.put(']', '[');
         Stack<Character> stack = new Stack<>();
-        for(char i: ss){
-            if(hashMap.containsKey(i)){
-                if(!stack.isEmpty() && stack.peek() == hashMap.get(i)){
+        for (char i : ss) {
+            if (hashMap.containsKey(i)) {
+                if (!stack.isEmpty() && stack.peek() == hashMap.get(i)) {
                     stack.pop();
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
-            else {
+            } else {
                 stack.push(i);
             }
         }
-        if(stack.isEmpty())
+        if (stack.isEmpty())
             return true;
         else
             return false;
